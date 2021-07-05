@@ -8,6 +8,7 @@
 @property (nonatomic, assign) BOOL hasErrored;
 // Whether the latest change of props requires the image to be reloaded
 @property (nonatomic, assign) BOOL needsReload;
+@property (nonatomic, assign) CGFloat blurRadius;
 
 @property (nonatomic, strong) NSDictionary* onLoadEvent;
 
@@ -226,6 +227,19 @@
                             }
                         }
                     }];
+                    
+                     if (_blurRadius && _blurRadius > 0) {
+                        UIVisualEffect *blurEffect;
+                        blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+
+                        UIVisualEffectView *visualEffectView;
+                        visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+                        visualEffectView.frame = self.bounds;
+                        visualEffectView.alpha = 1 - (_blurRadius / 10);
+                        visualEffectView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+
+                        [self addSubview:visualEffectView];
+         }
 }
 
 @end
