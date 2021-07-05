@@ -93,6 +93,8 @@ export interface FastImageProps extends AccessibilityProps {
     onError?(): void
 
     onLoadEnd?(): void
+    
+    blurRadius?: number
 
     /**
      * onLayout function
